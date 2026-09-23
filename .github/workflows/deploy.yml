@@ -40,7 +40,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4.81.0"
-          command: pages deploy _site --project-name lp-5t7 --branch master
+          command: pages deploy _site --project-name neoenox-apps --branch master
 
       - name: Verify deployment-specific URL
         id: verify
@@ -56,8 +56,8 @@ jobs:
       - name: Smoke test Production
         id: smoke
         run: |
-          python3 tool/verify_remote_site.py https://lp-5t7.pages.dev _site
-          python3 tool/check_production_headers.py https://lp-5t7.pages.dev/
+          python3 tool/verify_remote_site.py https://neoenox-apps.pages.dev _site
+          python3 tool/check_production_headers.py https://neoenox-apps.pages.dev/
 
       - name: Report deployment statuses
         if: always()
@@ -69,7 +69,7 @@ jobs:
           DEPLOY_OUTCOME: ${{ steps.deploy.outcome }}
           VERIFY_OUTCOME: ${{ steps.verify.outcome }}
           SMOKE_OUTCOME: ${{ steps.smoke.outcome }}
-          PRODUCTION_URL: https://lp-5t7.pages.dev
+          PRODUCTION_URL: https://neoenox-apps.pages.dev
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           set -euo pipefail

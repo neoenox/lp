@@ -37,8 +37,8 @@ jobs:
         run: |
           set -o pipefail
           {
-            python3 tool/verify_remote_site.py https://lp-5t7.pages.dev _site
-            python3 tool/check_production_headers.py https://lp-5t7.pages.dev/
+            python3 tool/verify_remote_site.py https://neoenox-apps.pages.dev _site
+            python3 tool/check_production_headers.py https://neoenox-apps.pages.dev/
           } 2>&1 | tee production-health.log
 
       - name: Upload failed health-check log
@@ -86,7 +86,7 @@ jobs:
             echo 'Production LPの定期死活監視が失敗しました。'
             echo
             echo "- Workflow: $RUN_URL"
-            echo "- Checked origin: https://lp-5t7.pages.dev"
+            echo "- Checked origin: https://neoenox-apps.pages.dev"
             echo
             echo '```text'
             tail -n 80 production-health.log 2>/dev/null || echo 'health-check log was not created'

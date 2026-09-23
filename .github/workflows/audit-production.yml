@@ -52,7 +52,7 @@ jobs:
           npm install --global @lhci/cli@0.15.1
       - name: Verify all Production pages and assets
         id: readiness
-        run: python3 tool/verify_remote_site.py https://lp-5t7.pages.dev _site
+        run: python3 tool/verify_remote_site.py https://neoenox-apps.pages.dev _site
       - name: Verify every manifest app is directly reachable
         shell: bash
         run: |
@@ -60,12 +60,12 @@ jobs:
           while IFS= read -r slug; do
             out="production-audit/browser/${slug}/direct.html"
             mkdir -p "$(dirname "$out")"
-            curl --fail --silent --show-error --location "https://lp-5t7.pages.dev/apps/${slug}/" > "$out"
+            curl --fail --silent --show-error --location "https://neoenox-apps.pages.dev/apps/${slug}/" > "$out"
             grep -qi '<main' "$out"
           done < <(jq -r '.apps[].slug' tool/site_manifest.json)
       - name: Capture あしたもつもの browser evidence
         env:
-          TARGET_URL: https://lp-5t7.pages.dev/apps/ashita-motsumono/
+          TARGET_URL: https://neoenox-apps.pages.dev/apps/ashita-motsumono/
           AUDIT_BROWSER_DIR: production-audit/browser/ashita-motsumono
         run: |
           set -euo pipefail
@@ -76,7 +76,7 @@ jobs:
           node tool/audit_screenshot_fallback.cjs
       - name: Capture へぇの種 browser evidence
         env:
-          TARGET_URL: https://lp-5t7.pages.dev/apps/ehenotane/
+          TARGET_URL: https://neoenox-apps.pages.dev/apps/ehenotane/
           AUDIT_BROWSER_DIR: production-audit/browser/ehenotane
         run: node tool/audit_ehenotane.cjs
       - name: Collect Lighthouse reports for every manifest app
@@ -86,7 +86,7 @@ jobs:
           set -euo pipefail
           rm -rf production-audit/lighthouse .lighthouseci
           while IFS= read -r slug; do
-            export LHCI_TARGET_URL="https://lp-5t7.pages.dev/apps/${slug}/"
+            export LHCI_TARGET_URL="https://neoenox-apps.pages.dev/apps/${slug}/"
             export LHCI_APP_SLUG="$slug"
             lhci autorun --config=./lighthouserc.mobile.cjs
             rm -rf .lighthouseci
@@ -115,7 +115,7 @@ jobs:
               return {name: round(statistics.median(scores)) for name, scores in values.items()}
           for app in apps:
               payload[app] = {mode: median_scores(root / app / mode / 'manifest.json') for mode in ('mobile', 'desktop')}
-          Path('production-audit/lighthouse-summary.json').write_text(json.dumps({'url_origin': 'https://lp-5t7.pages.dev', 'apps': payload}, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          Path('production-audit/lighthouse-summary.json').write_text(json.dumps({'url_origin': 'https://neoenox-apps.pages.dev', 'apps': payload}, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           lines = ['## Production Lighthouse', '', '| App | Mode | Performance | Accessibility | Best Practices | SEO |', '|---|---|---:|---:|---:|---:|']
           for app, modes in payload.items():
               for mode, scores in modes.items():

@@ -11,17 +11,17 @@
 | サービス名 | あしたもつもの |
 | Google Playアプリ名 | あしたもつもの |
 | 問い合わせ先 | kaenozu@gmail.com |
-| Production origin | https://lp-5t7.pages.dev |
-| アプリLP | https://lp-5t7.pages.dev/apps/ashita-motsumono/ |
-| プライバシーポリシー | https://lp-5t7.pages.dev/apps/ashita-motsumono/privacy |
-| 利用規約 | https://lp-5t7.pages.dev/apps/ashita-motsumono/terms |
-| お問い合わせ | https://lp-5t7.pages.dev/apps/ashita-motsumono/contact |
+| Production origin | https://neoenox-apps.pages.dev |
+| アプリLP | https://neoenox-apps.pages.dev/apps/ashita-motsumono/ |
+| プライバシーポリシー | https://neoenox-apps.pages.dev/apps/ashita-motsumono/privacy |
+| 利用規約 | https://neoenox-apps.pages.dev/apps/ashita-motsumono/terms |
+| お問い合わせ | https://neoenox-apps.pages.dev/apps/ashita-motsumono/contact |
 
 ## 表記ルール
 
 - 公開表示では、漢字を含む「あした持つもの」を使用せず、ひらがなの「あしたもつもの」に統一します。
 - リポジトリ名、パッケージ名、URL slugは既存の`ashita-motsumono` / `ashita_motsumono`を維持します。
-- canonical、OGP、Twitter Card、sitemap、robots、Production監査は`https://lp-5t7.pages.dev`を基準にします。
+- canonical、OGP、Twitter Card、sitemap、robots、Production監査は`https://neoenox-apps.pages.dev`を基準にします。
 - カスタムドメインは現時点では導入せず、取得・DNS・更新運用を決定した時点で別途移行します。
 - Google Play公開後は、主要CTAを正式なストアURLへ更新します。
 

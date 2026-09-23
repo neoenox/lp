@@ -44,7 +44,7 @@ def validate(headers: dict[str, str]) -> None:
 
 
 def main() -> None:
-    url = sys.argv[1] if len(sys.argv) > 1 else "https://lp-5t7.pages.dev/"
+    url = sys.argv[1] if len(sys.argv) > 1 else "https://neoenox-apps.pages.dev/"
     headers = fetch_headers(url)
     validate(headers)
     print("Production security headers passed")

@@ -1,6 +1,6 @@
 # Production表示・Lighthouse・アクセシビリティ監査
 
-Production origin `https://lp-5t7.pages.dev`を、次のworkflowで継続確認します。
+Production origin `https://neoenox-apps.pages.dev`を、次のworkflowで継続確認します。
 
 - `.github/workflows/audit-production.yml`: 両アプリのブラウザ操作、障害時フォールバック、Lighthouse
 - `.github/workflows/audit-production-accessibility.yml`: 両アプリの文書構造、Accessibility Tree、200%文字拡大

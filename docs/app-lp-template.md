@@ -84,10 +84,10 @@ assets/brand/og-my-app.png
 例:
 
 ```html
-<link rel="canonical" href="https://lp-5t7.pages.dev/apps/my-app/privacy">
-<meta property="og:url" content="https://lp-5t7.pages.dev/apps/my-app/privacy">
-<meta property="og:image" content="https://lp-5t7.pages.dev/assets/brand/og-my-app.png">
-<meta name="twitter:image" content="https://lp-5t7.pages.dev/assets/brand/og-my-app.png">
+<link rel="canonical" href="https://neoenox-apps.pages.dev/apps/my-app/privacy">
+<meta property="og:url" content="https://neoenox-apps.pages.dev/apps/my-app/privacy">
+<meta property="og:image" content="https://neoenox-apps.pages.dev/assets/brand/og-my-app.png">
+<meta name="twitter:image" content="https://neoenox-apps.pages.dev/assets/brand/og-my-app.png">
 ```
 
 ## 6. 内部リンク
