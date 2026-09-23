@@ -56,7 +56,7 @@ class ProductionAccessibilityAuditTest(unittest.TestCase):
     def test_tooling_is_pinned(self) -> None:
         self.assertIn('puppeteer-core@25.3.0', WORKFLOW)
         self.assertIn('actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0', WORKFLOW)
-        self.assertIn('actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a', WORKFLOW)
+        self.assertIn('actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02', WORKFLOW)
 
 
 if __name__ == '__main__':
