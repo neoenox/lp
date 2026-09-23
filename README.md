@@ -14,7 +14,7 @@
 ## 公開環境
 
 - Production URL: `https://lp-5t7.pages.dev`
-- Cloudflare Pagesプロジェクト: `lp`
+- Cloudflare Pagesプロジェクト: `lp-5t7`
 - 配信方式: Direct Upload
 - Productionブランチ: `master`
 - 自動デプロイ: GitHub Actionsの`Deploy to Cloudflare Pages`
