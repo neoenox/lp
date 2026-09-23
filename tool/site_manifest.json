@@ -9,6 +9,12 @@
     "og-ashita-motsumono.png",
     "og-ehenotane.png"
   ],
+  "standalone_pages": [
+    {
+      "path": "/apps/today-where-go/privacy",
+      "og_image": "og-portal.png"
+    }
+  ],
   "apps": [
     {
       "slug": "ashita-motsumono",

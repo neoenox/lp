@@ -60,6 +60,7 @@ def page_paths() -> list[str]:
     for app in MANIFEST["apps"]:
         base = f"/apps/{app['slug']}"
         paths.extend([f"{base}/", f"{base}/privacy", f"{base}/terms", f"{base}/contact"])
+    paths.extend(page["path"] for page in MANIFEST.get("standalone_pages", []))
     return paths
 
 
@@ -88,8 +89,13 @@ def expected_og(url_path: str) -> str:
     if url_path == "/":
         return f"{ORIGIN}/assets/brand/og-portal.png"
     slug = url_path.split("/")[2]
-    app = next(item for item in MANIFEST["apps"] if item["slug"] == slug)
-    return f"{ORIGIN}/assets/brand/{app['og_image']}"
+    app = next((item for item in MANIFEST["apps"] if item["slug"] == slug), None)
+    if app is not None:
+        image = app["og_image"]
+    else:
+        page = next(item for item in MANIFEST.get("standalone_pages", []) if item["path"] == url_path)
+        image = page["og_image"]
+    return f"{ORIGIN}/assets/brand/{image}"
 
 
 def read_png_size(path: Path) -> tuple[int, int]:
@@ -163,6 +169,21 @@ def validate_manifest() -> None:
         app_store = validate_store_url(app.get("app_store_url"), "app_store", slug)
         if status == "published":
             assert_true(bool(google_play or app_store), f"published app must have a store URL: {slug}")
+
+    standalone_paths: set[str] = set()
+    for page in MANIFEST.get("standalone_pages", []):
+        path = page.get("path")
+        assert_true(
+            isinstance(path, str)
+            and path.startswith("/apps/")
+            and not path.endswith("/")
+            and "." not in path
+            and ".." not in path,
+            f"invalid standalone page path: {path}",
+        )
+        assert_true(path not in standalone_paths, f"duplicate standalone page path: {path}")
+        standalone_paths.add(path)
+        assert_true(page.get("og_image") in MANIFEST["brand_assets"], f"invalid standalone page OGP: {path}")
 
 
 def validate_release_presentation(site: Path) -> None:

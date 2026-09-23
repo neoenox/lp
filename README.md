@@ -53,6 +53,8 @@ apps/
 - 実画面スクリーンショット
 - JavaScript実行後に期待する実画面画像数
 
+アプリ一覧にまだ掲載しない法務ページなどの単独ページは、同じmanifestの`standalone_pages`にパスとOGP画像を登録します。登録ページはsitemap、HTML集合、canonical、OGPの検証対象になります。
+
 公開状態:
 
 - `preparing`: 準備中。ストアリンクを表示しない
