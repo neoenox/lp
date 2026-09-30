@@ -1,6 +1,6 @@
 # Google Search Console運用手順
 
-Production originは`https://lp-5t7.pages.dev`です。現時点ではカスタムドメインを使用しないため、Search ConsoleではURLプレフィックスプロパティとしてこのoriginを登録します。
+Production originは`https://neoenox-apps.pages.dev`です。現時点ではカスタムドメインを使用しないため、Search ConsoleではURLプレフィックスプロパティとしてこのoriginを登録します。
 
 ## リポジトリ側の準備
 
@@ -21,21 +21,21 @@ Search Consoleが発行したHTMLタグの`content`値だけを、GitHub Actions
 確認コマンド:
 
 ```bash
-curl -fsSL https://lp-5t7.pages.dev/ | grep 'google-site-verification'
+curl -fsSL https://neoenox-apps.pages.dev/ | grep 'google-site-verification'
 ```
 
 ## Search Console側の操作
 
-1. URLプレフィックスプロパティ`https://lp-5t7.pages.dev/`を追加する
+1. URLプレフィックスプロパティ`https://neoenox-apps.pages.dev/`を追加する
 2. HTMLタグ方式を選択する
 3. 発行された`content`値をRepository variableへ登録する
 4. Productionデプロイの成功を確認する
 5. Search Consoleで所有権確認を実行する
-6. `https://lp-5t7.pages.dev/sitemap.xml`を送信する
+6. `https://neoenox-apps.pages.dev/sitemap.xml`を送信する
 7. 次のURLをURL検査する
-   - `https://lp-5t7.pages.dev/`
-   - `https://lp-5t7.pages.dev/apps/ashita-motsumono/`
-   - `https://lp-5t7.pages.dev/apps/ehenotane/`
+   - `https://neoenox-apps.pages.dev/`
+   - `https://neoenox-apps.pages.dev/apps/ashita-motsumono/`
+   - `https://neoenox-apps.pages.dev/apps/ehenotane/`
 8. canonical、robots、sitemap、クロールの警告を確認する
 
 ## 完了記録

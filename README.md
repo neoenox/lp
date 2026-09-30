@@ -9,11 +9,11 @@
 - `/apps/{app-slug}/contact`: お問い合わせ
 
 > [!IMPORTANT]
-> 「あしたもつもの」の正式名称、問い合わせ先、Production originは`docs/public-identity.md`で管理します。公開表示は「あしたもつもの」、問い合わせ先は`kaenozu@gmail.com`、Production originは`https://lp-5t7.pages.dev`です。
+> 「あしたもつもの」の正式名称、問い合わせ先、Production originは`docs/public-identity.md`で管理します。公開表示は「あしたもつもの」、問い合わせ先は`kaenozu@gmail.com`、Production originは`https://neoenox-apps.pages.dev`です。
 
 ## 公開環境
 
-- Production URL: `https://lp-5t7.pages.dev`
+- Production URL: `https://neoenox-apps.pages.dev`
 - Cloudflare Pagesプロジェクト: `lp`
 - 配信方式: Direct Upload
 - Productionブランチ: `master`
@@ -239,7 +239,7 @@ done < <(find _site tool -type f \( -name '*.js' -o -name '*.cjs' \) -print0 | s
 Productionのヘッダー確認:
 
 ```bash
-python3 tool/check_production_headers.py https://lp-5t7.pages.dev/
+python3 tool/check_production_headers.py https://neoenox-apps.pages.dev/
 ```
 
 ## 主な構成

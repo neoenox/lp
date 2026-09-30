@@ -21,7 +21,7 @@ class ProductionAuditTest(unittest.TestCase):
         self.assertIn('python3 -m http.server 8123 --directory _site', PR_WORKFLOW)
         self.assertIn('http://127.0.0.1:8123/apps/ashita-motsumono/', PR_WORKFLOW)
         self.assertIn('http://127.0.0.1:8123/apps/ehenotane/', PR_WORKFLOW)
-        self.assertNotIn('TARGET_URL: https://lp-5t7.pages.dev', PR_WORKFLOW)
+        self.assertNotIn('TARGET_URL: https://neoenox-apps.pages.dev', PR_WORKFLOW)
 
     def test_both_app_browser_flows_are_exercised(self) -> None:
         for workflow in (PR_WORKFLOW, PRODUCTION_WORKFLOW):

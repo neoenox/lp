@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lp-5t7.pages.dev/sitemap.xml
+Sitemap: https://neoenox-apps.pages.dev/sitemap.xml
