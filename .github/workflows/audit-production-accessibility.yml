@@ -85,7 +85,7 @@ jobs:
           SLUG: ${{ matrix.slug }}
         run: |
           set -euo pipefail
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then origin="http://127.0.0.1:8123"; else origin="https://lp-5t7.pages.dev"; fi
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then origin="http://127.0.0.1:8123"; else origin="https://neoenox-apps.pages.dev"; fi
           echo "TARGET_URL=${origin}/apps/${SLUG}/" >> "$GITHUB_ENV"
           echo "ACCESSIBILITY_AUDIT_DIR=production-audit/accessibility/${SLUG}" >> "$GITHUB_ENV"
       - name: Locate Chrome
