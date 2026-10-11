@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import re
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -62,7 +63,13 @@ class ProductionAuditTest(unittest.TestCase):
         for workflow in (PR_WORKFLOW, PRODUCTION_WORKFLOW):
             self.assertIn('puppeteer-core@25.3.0', workflow)
             self.assertIn('actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0', workflow)
-            self.assertIn('actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a', workflow)
+            # Require an immutable commit pin, not a specific action version.
+            artifact_uses = re.findall(
+                r'uses:\s*actions/upload-artifact@([^\s#]+)', workflow
+            )
+            self.assertTrue(artifact_uses, 'upload-artifact action is missing')
+            for ref in artifact_uses:
+                self.assertRegex(ref, r'\A[0-9a-f]{40}\Z')
         self.assertIn('@lhci/cli@0.15.1', PRODUCTION_WORKFLOW)
 
     def test_ashita_responsive_audit_still_checks_three_widths(self) -> None:
