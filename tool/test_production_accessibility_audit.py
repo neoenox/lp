@@ -56,7 +56,18 @@ class ProductionAccessibilityAuditTest(unittest.TestCase):
     def test_tooling_is_pinned(self) -> None:
         self.assertIn('puppeteer-core@25.3.0', WORKFLOW)
         self.assertIn('actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0', WORKFLOW)
-        self.assertIn('actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a', WORKFLOW)
+        # Accept only verified artifact upload SHAs, and exactly one upload step.
+        allowed_pins = {
+            'uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a',
+            'uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9',
+        }
+        pins = [
+            line.strip().split(' #', 1)[0]
+            for line in WORKFLOW.splitlines()
+            if line.strip().startswith('uses: actions/upload-artifact@')
+        ]
+        self.assertEqual(len(pins), 1, 'Expected one SHA-pinned artifact upload step')
+        self.assertIn(pins[0], allowed_pins)
 
 
 if __name__ == '__main__':

@@ -62,7 +62,23 @@ class ProductionAuditTest(unittest.TestCase):
         for workflow in (PR_WORKFLOW, PRODUCTION_WORKFLOW):
             self.assertIn('puppeteer-core@25.3.0', workflow)
             self.assertIn('actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0', workflow)
-            self.assertIn('actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a', workflow)
+        # Only verified version/SHA pairs are accepted; Dependabot upgrades
+        # should update this allowlist without weakening SHA pinning.
+        upload_pins = {
+            'uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1',
+            'uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2',
+        }
+        active_pins = []
+        for workflow in (PR_WORKFLOW, PRODUCTION_WORKFLOW):
+            found = [
+                line.strip()
+                for line in workflow.splitlines()
+                if line.strip().startswith('uses: actions/upload-artifact@')
+            ]
+            self.assertEqual(len(found), 1, 'Expected exactly one pinned artifact upload')
+            self.assertIn(found[0], upload_pins)
+            active_pins.extend(found)
+        self.assertEqual(active_pins[0], active_pins[1], 'Audit workflows must share the same pin')
         self.assertIn('@lhci/cli@0.15.1', PRODUCTION_WORKFLOW)
 
     def test_ashita_responsive_audit_still_checks_three_widths(self) -> None:
